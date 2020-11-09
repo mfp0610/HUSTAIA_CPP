@@ -1,2 +1,4 @@
 # HUSTAIA_CPP
-HUSTAIA CPPclass final work
+华中科技大学自动化学院C++结课作业。
+
+成员：自动化1905孟繁鹏，自卓1901屈文杰。

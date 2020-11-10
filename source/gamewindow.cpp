@@ -2,10 +2,9 @@
 #include "ui_gamewindow.h"
 #include <cstdio>
 #include <cstring>
-#include <algorithm>//算法库
+#include <algorithm>
 #include <config.h>
 #include <time.h>
-#include <string.h>
 #include <windows.h>
 #include <queue>
 #include <utility>
@@ -181,12 +180,25 @@ void gamewindow::paintEvent(QPaintEvent *)
         {
             int xa=lef+(j-1)*edge,ya=rt+(i-1)*edge; //计算该小方格左上角的坐标
             //按照mp地图的值画出地图
-            if(mp[i][j]==0) painter.drawPixmap(xa,ya,QPixmap(":/res/elements/SOIL.png"));
-            if(mp[i][j]==1) painter.drawPixmap(xa,ya,QPixmap(":/res/elements/thefood.png"));
-            if(mp[i][j]==2) painter.drawPixmap(xa,ya,QPixmap(":/res/elements/thespider.png"));
-            if(mp[i][j]==3) painter.drawPixmap(xa,ya,QPixmap(":/res/elements/theant.png"));
-            if(mp[i][j]==4) painter.drawPixmap(xa,ya,QPixmap(":/res/elements/home.JPG"));
-            //painter.drawRect(xa,ya,edge,edge);
+            switch(mp[i][j])
+            {
+                case 0:
+                    painter.drawPixmap(xa,ya,QPixmap(":/res/elements/SOIL.png"));
+                    break;
+                case 1:
+                    painter.drawPixmap(xa,ya,QPixmap(":/res/elements/thefood.png"));
+                    break;
+                case 2:
+                    painter.drawPixmap(xa,ya,QPixmap(":/res/elements/thespider.png"));
+                    break;
+                case 3:
+                    painter.drawPixmap(xa,ya,QPixmap(":/res/elements/theant.png"));
+                    break;
+                case 4:
+                    painter.drawPixmap(xa,ya,QPixmap(":/res/elements/home.JPG"));
+                    break;
+                default: break;
+            }
         }
     }
     else //画带迷雾的地图
@@ -195,9 +207,19 @@ void gamewindow::paintEvent(QPaintEvent *)
         for(int j=1;j<=n;j++)
         {
             int xa=lef+(j-1)*edge,ya=rt+(i-1)*edge;
-            if(mp[i][j]==3) painter.drawPixmap(xa,ya,QPixmap(":/res/elements/theant.png"));
-            if(mp[i][j]==0) painter.drawPixmap(xa,ya,QPixmap(":/res/elements/SOIL.png"));
-            if(mp[i][j]==4) painter.drawPixmap(xa,ya,QPixmap(":/res/elements/home.JPG"));
+            switch(mp[i][j])
+            {
+                case 3:
+                    painter.drawPixmap(xa,ya,QPixmap(":/res/elements/theant.png"));
+                    break;
+                case 0:
+                    painter.drawPixmap(xa,ya,QPixmap(":/res/elements/SOIL.png"));
+                    break;
+                case 4:
+                    painter.drawPixmap(xa,ya,QPixmap(":/res/elements/home.JPG"));
+                    break;
+                default: break;
+            }
             if(!mpx[i][j]) //绘制迷雾
             {
                 painter.setBrush(QBrush(Qt::white));
@@ -206,100 +228,36 @@ void gamewindow::paintEvent(QPaintEvent *)
             }            
         }
     }
-    qDebug("nearest food left: %d",x);
     painter.drawPixmap(100,25,QPixmap(":/res/elements/life.PNG"));
     painter.drawPixmap(925,175,QPixmap(":/res/elements/fd.PNG"));
     painter.drawPixmap(925,325,QPixmap(":/res/elements/fdd.PNG"));
     painter.drawPixmap(925,475,QPixmap(":/res/elements/sp.PNG"));
     painter.drawPixmap(925,625,QPixmap(":/res/elements/spd.PNG"));
-    if(lf==3)painter.drawPixmap(400,25,QPixmap(lf3));
-    if(lf==2)painter.drawPixmap(400,25,QPixmap(lf2));
-    if(lf==1)painter.drawPixmap(400,25,QPixmap(lf1));
-    if(lf==0)painter.drawPixmap(400,25,QPixmap(lf0));
-    if(fd==0)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/00.png"));
-    if(fd==1)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/01.png"));
-    if(fd==2)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/02.png"));
-    if(fd==3)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/03.png"));
-    if(fd==4)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/04.png"));
-    if(fd==5)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/05.png"));
-    if(fd==6)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/06.png"));
-    if(fd==7)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/07.png"));
-    if(fd==8)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/08.png"));
-    if(fd==9)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/09.png"));
-    if(fd==10)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/10.png"));
-    if(fd==11)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/11.png"));
-    if(fd==12)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/12.png"));
-    if(fd==13)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/13.png"));
-    if(fd==14)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/14.png"));
-    if(fd==15)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/15.png"));
-    if(fd==16)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/16.png"));
-    if(fd==17)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/17.png"));
-    if(fd==18)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/18.png"));
-    if(fd==19)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/19.png"));
-    if(fd==20)painter.drawPixmap(1400,175,QPixmap(":/res/numbers/20.png"));
-    if(sp==0)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/00.png"));
-    if(sp==1)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/01.png"));
-    if(sp==2)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/02.png"));
-    if(sp==3)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/03.png"));
-    if(sp==4)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/04.png"));
-    if(sp==5)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/05.png"));
-    if(sp==6)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/06.png"));
-    if(sp==7)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/07.png"));
-    if(sp==8)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/08.png"));
-    if(sp==9)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/09.png"));
-    if(sp==10)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/10.png"));
-    if(sp==11)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/11.png"));
-    if(sp==12)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/12.png"));
-    if(sp==13)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/13.png"));
-    if(sp==14)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/14.png"));
-    if(sp==15)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/15.png"));
-    if(sp==16)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/16.png"));
-    if(sp==17)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/17.png"));
-    if(sp==18)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/18.png"));
-    if(sp==19)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/19.png"));
-    if(sp==20)painter.drawPixmap(1400,475,QPixmap(":/res/numbers/20.png"));
-    if(y==0)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/00.png"));
-    if(y==1)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/01.png"));
-    if(y==2)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/02.png"));
-    if(y==3)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/03.png"));
-    if(y==4)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/04.png"));
-    if(y==5)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/05.png"));
-    if(y==6)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/06.png"));
-    if(y==7)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/07.png"));
-    if(y==8)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/08.png"));
-    if(y==9)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/09.png"));
-    if(y==10)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/10.png"));
-    if(y==11)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/11.png"));
-    if(y==12)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/12.png"));
-    if(y==13)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/13.png"));
-    if(y==14)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/14.png"));
-    if(y==15)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/15.png"));
-    if(y==16)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/16.png"));
-    if(y==17)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/17.png"));
-    if(y==18)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/18.png"));
-    if(y==19)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/19.png"));
-    if(y==20)painter.drawPixmap(1400,625,QPixmap(":/res/numbers/20.png"));
-    if(x==0)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/00.png"));
-    if(x==1)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/01.png"));
-    if(x==2)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/02.png"));
-    if(x==3)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/03.png"));
-    if(x==4)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/04.png"));
-    if(x==5)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/05.png"));
-    if(x==6)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/06.png"));
-    if(x==7)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/07.png"));
-    if(x==8)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/08.png"));
-    if(x==9)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/09.png"));
-    if(x==10)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/10.png"));
-    if(x==11)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/11.png"));
-    if(x==12)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/12.png"));
-    if(x==13)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/13.png"));
-    if(x==14)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/14.png"));
-    if(x==15)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/15.png"));
-    if(x==16)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/16.png"));
-    if(x==17)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/17.png"));
-    if(x==18)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/18.png"));
-    if(x==19)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/19.png"));
-    if(x==20)painter.drawPixmap(1400,325,QPixmap(":/res/numbers/20.png"));
+    switch(lf)
+    {
+        case 3:
+            painter.drawPixmap(400,25,QPixmap(lf3));
+            break;
+        case 2:
+            painter.drawPixmap(400,25,QPixmap(lf2));
+            break;
+        case 1:
+            painter.drawPixmap(400,25,QPixmap(lf1));
+            break;
+        case 0:
+            painter.drawPixmap(400,25,QPixmap(lf0));
+            break;
+        default: break;
+    }
+    QString spth;
+    spth=getpathnum(fd);
+    painter.drawPixmap(1400,175,QPixmap(spth));
+    spth=getpathnum(x);
+    painter.drawPixmap(1400,325,QPixmap(spth));
+    spth=getpathnum(sp);
+    painter.drawPixmap(1400,475,QPixmap(spth));
+    spth=getpathnum(y);
+    painter.drawPixmap(1400,625,QPixmap(spth));
 }
 
 //生成随机地图
@@ -517,6 +475,18 @@ void gamewindow::iniscene()
     loseLabel->setPixmap(tmpPix2);
     loseLabel->setParent(this);
     loseLabel->move((this->width()-tmpPix2.width())*0.5,-tmpPix2.height());
+}
+
+//得到数字图片的地址
+QString gamewindow::getpathnum(int num)
+{
+    QString spt=":/res/numbers/00.png", nmp;
+    string nm="";
+    nm+=num/10+'0';
+    nm+=num%10+'0';
+    nmp=QString::fromStdString(nm);
+    spt.replace("00",nmp);
+    return spt;
 }
 
 gamewindow::~gamewindow()

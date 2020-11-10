@@ -44,10 +44,10 @@
 //选关按钮3
 #define CHOOSE_BUTTON3 ":/res/elements/level3.png"
 //生命值血条
-#define lf0 ":/res/elements/0.PNG"
-#define lf1 ":/res/elements/1.PNG"
-#define lf2 ":/res/elements/2.PNG"
-#define lf3 ":/res/elements/3.PNG"
+#define lf0 ":/res/elements/blood0.PNG"
+#define lf1 ":/res/elements/blood1.PNG"
+#define lf2 ":/res/elements/blood2.PNG"
+#define lf3 ":/res/elements/blood3.PNG"
 
 
 #endif // CONFIG_H

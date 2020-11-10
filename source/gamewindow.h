@@ -1,6 +1,8 @@
 ﻿#ifndef GAMEWINDOW_H
 #define GAMEWINDOW_H
 
+
+#include <cstring>
 #include <QMainWindow>
 #include <QLabel>
 #include <QMessageBox>
@@ -55,6 +57,8 @@ public:
     void move(int px,int py);
 
     void iniscene();
+
+    QString getpathnum(int num);
 
     ~gamewindow();//管理内存的析构函数
     //一个标签的挂件，定义一个QLabel类型的指针叫。。。。初始值为空。

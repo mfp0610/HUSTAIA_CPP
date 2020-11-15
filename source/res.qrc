@@ -59,5 +59,7 @@
         <file>res/elements/thespider.png</file>
         <file>res/elements/WINpage.png</file>
         <file>res/elements/ant.jpg</file>
+        <file>res/elements/fog.jpg</file>
+        <file>res/elements/helppage.jpg</file>
     </qresource>
 </RCC>

@@ -11,7 +11,7 @@
 //选关界面背景图
 #define CHOOSE_SCENE ":/res/elements/page2.jpg"
 //帮助界面背景图
-#define HELP_SCENE ":/res/helpscene.png"
+#define HELP_SCENE ":/res/elements/helppage.jpg"
 //游戏界面背景图
 #define GAME_SCENE ":/res/elements/BACKGROUNDgame.jpg"
 

@@ -222,8 +222,7 @@ void gamewindow::paintEvent(QPaintEvent *)
             }
             if(!mpx[i][j]) //绘制迷雾
             {
-                painter.setBrush(QBrush(Qt::white));
-                painter.drawRect(xa,ya,edge,edge);
+                painter.drawPixmap(xa,ya,QPixmap(":/res/elements/fog.jpg"));
                 continue;
             }            
         }

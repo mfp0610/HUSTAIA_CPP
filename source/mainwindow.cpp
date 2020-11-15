@@ -21,8 +21,6 @@ MainWindow::MainWindow(QWidget *parent)
     QSound * bgm = new QSound(SOUND_BACKGROUND);
     bgm->play();
     bgm->setLoops(-1);
-    //菜单栏
-    menu();
 
     //音效
     QSound * startSound = new QSound(SOUND_CLICK);
@@ -113,22 +111,6 @@ void MainWindow::initScene()
     setFixedSize(GAME_WIDTH,GAME_HEIGHT);//设置窗口大小
     setWindowTitle(GAME_TITLE);//设置标题
     setWindowIcon(QPixmap(ANT_PIX));//设置图标
-}
-
-void MainWindow::menu()
-{
-    //菜单栏创建
-    QMenuBar * bar = menuBar();
-    //将菜单栏放入到窗口中
-    setMenuBar(bar);
-    //创建菜单
-    QMenu * fileMenu = bar->addMenu("模式选择");
-    //创建菜单项1
-    fileMenu->addAction("键盘模式");
-    //添加分割线
-    fileMenu->addSeparator();
-    // 创建菜单项2
-    fileMenu->addAction("体感模式");
 }
 
 MainWindow::~MainWindow()

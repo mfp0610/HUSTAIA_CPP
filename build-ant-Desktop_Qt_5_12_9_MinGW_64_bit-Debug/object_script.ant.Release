@@ -1,0 +1,12 @@
+release/chooselevelscene.o
+release/gamewindow.o
+release/helpscene.o
+release/main.o
+release/mainwindow.o
+release/mypushbutton.o
+release/qrc_res.o
+release/moc_chooselevelscene.o
+release/moc_gamewindow.o
+release/moc_helpscene.o
+release/moc_mainwindow.o
+release/moc_mypushbutton.o

@@ -1,0 +1,12 @@
+debug/chooselevelscene.o
+debug/gamewindow.o
+debug/helpscene.o
+debug/main.o
+debug/mainwindow.o
+debug/mypushbutton.o
+debug/qrc_res.o
+debug/moc_chooselevelscene.o
+debug/moc_gamewindow.o
+debug/moc_helpscene.o
+debug/moc_mainwindow.o
+debug/moc_mypushbutton.o
